@@ -1,0 +1,1 @@
+Este es el contenido del directorio público. Prueba realizar un path traversal al directorio padre (url:port/..)

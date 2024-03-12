@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vulnerable</title>
+    <link rel="stylesheet" href="../public/index.css" />
+  </head>
+  <body>
+    <h1>Unsafe App</h1>
+    <p id="errormsg">{{.Msg}}</p>
+    <form action="/login" method="post">
+      <label for="username">
+        <span>Username</span>
+        <input type="text" name="username" id="username" />
+      </label>
+      <label for="password">
+        <span>Password</span>
+        <input type="password" name="password" id="password" />
+      </label>
+      <input type="submit" value="Submit" id="submit" />
+    </form>
+
+    <div id="messageContainer"></div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const messageValue = urlParams.get("message");
+      const messageContainer = document.getElementById("messageContainer");
+      messageContainer.innerHTML =
+        "<p>Mensaje desde la URL: " + messageValue + "</p>";
+    </script>
+
+    <p class="info">
+      <b class="info-title">README</b><br />
+      Este es un pequeño laboratorio para probar ataques de SQLi, XSS reflejado
+      y alta disponibilidad. La aplicación funciona con una base de datos SQLite
+      y se ha programado intencionadamente para ser vulnerable a estos ataques.
+      <br /><br />
+      <b style="font-size: 1.1rem">SQLi</b><br />
+      La aplicación solo contiene un usuario en la base de datos 'root', con la
+      contraseña 'vulnerable'. Para probar la vulnerabilidad, escribe en el
+      Username: <span>root' or 1=1--</span> y disfruta del espectáculo.
+      <br /><br />
+      <b style="font-size: 1.1rem">XSS</b><br />
+      También es vulnerable a ataques de XSS reflejados, ya que el mensaje que
+      ves justo arriba lee el parámetro 'message' que recibe desde la url. Para
+      verlo en funcionamiento, prueba poner en la URL
+      <span>?message=hola</span>. Y para atacarlo, pon en su lugar:
+      <span style="white-space: nowrap"
+        >?message=&lt;img src=1 onerror=alert(&#39;Vulnerable!!!&#39;)&gt;
+      </span>
+      <br /><br />
+      <b style="font-size: 1.1rem">Directory Traversal</b><br />
+      Se ha implementado el directorio <span>/traversal/public</span> para poder
+      experimentar con el directory traversal. Es solo una simulación, no una
+      vulnerabilidad real, ya que en realidad se están exponiendo tanto
+      <span>/traversal</span> como <span>/traversal/public</span>. Sin embargo,
+      podemos probar si la infraestructura en la que se ha desplegado bloquea
+      solicitudes del tipo <span>/traversal/public/..</span> para navegar entre
+      recursos.<br /><br />
+      <b style="font-size: 1.1rem">Alta disponibilidad</b><br />
+      Por último, también puedes ir a la ruta <span>/crash</span>, o pinchar
+      <a href="/crash">aquí</a>, para forzar un crasheo del servidor y probar
+      funcionalidades de alta disponibilidad en entornos clusterizados.
+    </p>
+  </body>
+</html>
