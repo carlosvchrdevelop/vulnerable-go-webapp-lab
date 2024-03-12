@@ -1,6 +1,6 @@
 # Laboratorio básico de hacking web
 
-Este es un laboratorio escrito en el lenguaje GO realiza expresamente para ser vulnerable a varias amenazas, como SQLi y XSS. Además está pensado para probar la seguridad de la infraestructura donde se despliega, ya que cuenta con un endpoint `/crash`, que provoca un fallo forzado del servidor que hace que se caiga. Esto es útil para probar implementaciones de alta disponibilidad con kubernetes, por ejemplo. También cuenta con un enpoint especial `/traversal/public` al cual se le puede hacer un directory traversal `/traversal/public/..` y probar si el WAF de la infraestructrua bloquea la petición o no.
+Este laboratorio escrito en el lenguaje GO ha sido realizado expresamente para ser vulnerable a varias amenazas, como SQLi y XSS. Además está pensado para probar la seguridad de la infraestructura donde se despliega, ya que cuenta con un endpoint `/crash`, que provoca un fallo forzado del servidor que hace que se caiga. Esto es útil para probar implementaciones de alta disponibilidad con kubernetes, por ejemplo. También cuenta con un enpoint especial `/traversal/public` al cual se le puede hacer un directory traversal `/traversal/public/..` y probar si el WAF de la infraestructrua bloquea la petición o no.
 
 ## Despliegue y pruebas
 
